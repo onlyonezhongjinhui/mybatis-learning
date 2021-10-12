@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeHandlers>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.demo.enums.Gender"/>
+        <!--        <typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.demo.enums.Gender"/>-->
+        <typeHandler handler="com.demo.handler.CommonEnumTypeHandler" javaType="com.demo.enums.Nation"/>
+        <typeHandler handler="com.demo.handler.IEnumTypeHandler" javaType="com.demo.enums.Education"/>
+    </typeHandlers>
+</configuration>
