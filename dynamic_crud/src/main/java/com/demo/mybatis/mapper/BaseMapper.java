@@ -1,4 +1,4 @@
-package com.demo.mapper;
+package com.demo.mybatis.mapper;
 
 import com.demo.mybatis.BaseSqlProvider;
 import org.apache.ibatis.annotations.*;
