@@ -21,8 +21,20 @@ public class UserTest {
         user.setAge(30);
         userMapper.insert(user);
 
-        userMapper.deleteById("111");
+        User selectUser = userMapper.selectById(user.getId());
+        System.out.println("selectUser1:" + selectUser.toString());
 
+        user.setName("鸡鸡");
+        user.setAge(31);
+        userMapper.updateById(user);
+
+        selectUser = userMapper.selectById(user.getId());
+        System.out.println("selectUser2:" + selectUser.toString());
+
+        userMapper.deleteById(user.getId());
+
+        selectUser = userMapper.selectById(user.getId());
+        System.out.println("selectUser3:" + selectUser);
     }
 
 }

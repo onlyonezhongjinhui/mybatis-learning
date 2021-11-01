@@ -1,25 +1,8 @@
-/*
- * Copyright (c) 2011-2020, baomidou (jobob@qq.com).
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.demo.mybatis.injector;
 
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.keygen.NoKeyGenerator;
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.mapping.SqlSource;
@@ -29,12 +12,8 @@ import org.apache.ibatis.session.Configuration;
 
 /**
  * 抽象的注入方法类
- *
- * @author hubin
- * @since 2018-04-06
  */
 public abstract class AbstractMethod {
-    protected static final Log logger = LogFactory.getLog(AbstractMethod.class);
 
     protected Configuration configuration;
     protected LanguageDriver languageDriver;
@@ -121,4 +100,10 @@ public abstract class AbstractMethod {
      */
     public abstract MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass);
 
+    /**
+     * 驼峰转下划线
+     */
+    public static String humpToLine(String str) {
+        return str.replaceAll("[A-Z]", "_$0").toLowerCase();
+    }
 }
