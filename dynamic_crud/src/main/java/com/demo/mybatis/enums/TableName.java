@@ -1,4 +1,4 @@
-package com.demo.sql.enums;
+package com.demo.mybatis.enums;
 
 import java.lang.annotation.*;
 

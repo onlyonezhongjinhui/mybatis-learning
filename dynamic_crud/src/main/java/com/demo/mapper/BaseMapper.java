@@ -1,20 +1,21 @@
 package com.demo.mapper;
 
+import com.demo.mybatis.BaseSqlProvider;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface BaseMapper<T> {
 
-    @Insert("${sql}")
-    void insert(@Param("sql") String sql);
+    @InsertProvider(type = BaseSqlProvider.class, method = "buildInsertSql")
+    void insert(T entity);
 
-    @Update("${sql}")
-    void update(@Param("sql") String sql);
+    @UpdateProvider(type = BaseSqlProvider.class, method = "buildUpdateSql")
+    void updateById(T entity);
 
-    @Delete("${sql}")
-    void delete(@Param("sql") String sql);
+    @DeleteProvider(type = BaseSqlProvider.class, method = "buildDeleteSql")
+    void deleteById(T entity);
 
-    @Select("${sql}")
-    T select(@Param("sql") String sql);
+    @SelectProvider(type = BaseSqlProvider.class, method = "buildSelectSql")
+    T selectById(T entity);
 
 }

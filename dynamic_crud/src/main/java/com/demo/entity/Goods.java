@@ -1,6 +1,6 @@
 package com.demo.entity;
 
-import com.demo.sql.enums.TableId;
+import com.demo.mybatis.enums.TableId;
 import lombok.Data;
 import lombok.ToString;
 

@@ -1,20 +1,16 @@
-package com.demo.sql;
+package com.demo.mybatis;
 
-import com.demo.entity.Goods;
-import com.demo.entity.User;
-import com.demo.sql.enums.TableField;
-import com.demo.sql.enums.TableId;
-import com.demo.sql.enums.TableName;
+import com.demo.mybatis.enums.TableField;
+import com.demo.mybatis.enums.TableId;
+import com.demo.mybatis.enums.TableName;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class SqlScriptUtils {
-
+public class BaseSqlProvider {
     @SneakyThrows
     public static <T> String buildInsertSql(T entity) {
         Class<?> clazz = entity.getClass();
@@ -195,49 +191,11 @@ public class SqlScriptUtils {
     }
 
     /**
-     * 驼峰转下划线(简单写法，效率低于{@link #humpToLine2(String)})
+     * 驼峰转下划线
      */
     public static String humpToLine(String str) {
         return str.replaceAll("[A-Z]", "_$0").toLowerCase();
     }
 
     private static final Pattern humpPattern = Pattern.compile("[A-Z]");
-
-    /**
-     * 驼峰转下划线,效率比上面高
-     */
-    public static String humpToLine2(String str) {
-        Matcher matcher = humpPattern.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        while (matcher.find()) {
-            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        User user = new User();
-        user.setId("123456");
-        user.setAge(18);
-        user.setName("张三");
-
-        Goods goods = new Goods();
-        goods.setGoodsId(123456);
-        goods.setGoodsTitle("苹果");
-        goods.setGoodsCount(100);
-
-        System.out.println("insert sql:");
-        System.out.println(buildInsertSql(user));
-        System.out.println(buildInsertSql(goods));
-        System.out.println("update sql:");
-        System.out.println(buildUpdateSql(user));
-        System.out.println(buildUpdateSql(goods));
-        System.out.println("delete sql:");
-        System.out.println(buildDeleteSql(user));
-        System.out.println(buildDeleteSql(goods));
-        System.out.println("select sql:");
-        System.out.println(buildSelectSql(user));
-        System.out.println(buildSelectSql(goods));
-    }
 }
